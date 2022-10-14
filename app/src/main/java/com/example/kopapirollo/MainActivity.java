@@ -7,6 +7,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -18,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
     private Button olloGomb;
     private Button papirGomb;
     private int valasztas;
+    private Random rnd;
 
 
     @Override
@@ -36,29 +40,50 @@ public class MainActivity extends AppCompatActivity {
         koGomb.findViewById(R.id.koGomb);
         papirGomb.findViewById(R.id.papirGomb);
         olloGomb.findViewById(R.id.olloGomb);
-        valasztas=0;
+        valasztas = -1;
     }
 
-    private void addListeners(){
+    private void addListeners() {
         koGomb.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                valasztas=1;
+                valasztas = 0;
+                ComputerGenerate();
+                playersImage.setImageResource(R.drawable.rock);
             }
         });
 
         papirGomb.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                valasztas=2;
+                valasztas = 1;
+                ComputerGenerate();
+                playersImage.setImageResource(R.drawable.paper);
             }
         });
 
         olloGomb.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                valasztas=3;
+                valasztas = 2;
+                ComputerGenerate();
+                playersImage.setImageResource(R.drawable.scissors);
             }
         });
     }
-}
+
+    private void ComputerGenerate() {
+        rnd = new Random(3);
+        int gepValasztasa = rnd.nextInt();
+        if (gepValasztasa == 0) {
+            computersImage.setImageResource(R.drawable.rock);
+        } else if (gepValasztasa==1) {
+            computersImage.setImageResource(R.drawable.paper);
+        } else if (gepValasztasa==2){
+            computersImage.setImageResource(R.drawable.scissors);
+        } else {
+            Toast.makeText(getApplicationContext(),"Hiba!",Toast.LENGTH_SHORT).show();
+        }
+
+        }
+    }
