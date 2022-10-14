@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
     private Button papirGomb;
     private int valasztas;
     private Random rnd;
+    private int gepValasztasa;
 
 
     @Override
@@ -50,6 +51,13 @@ public class MainActivity extends AppCompatActivity {
                 valasztas = 0;
                 ComputerGenerate();
                 playersImage.setImageResource(R.drawable.rock);
+                if (valasztas==gepValasztasa) {
+                    Toast.makeText(getApplicationContext(),"Döntetlen",Toast.LENGTH_SHORT).show();
+                } else if (gepValasztasa==1){
+                    Toast.makeText(getApplicationContext(),"Vesztettél!",Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(getApplicationContext(),"Nyertél!",Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -59,6 +67,13 @@ public class MainActivity extends AppCompatActivity {
                 valasztas = 1;
                 ComputerGenerate();
                 playersImage.setImageResource(R.drawable.paper);
+                if (valasztas==gepValasztasa) {
+                    Toast.makeText(getApplicationContext(),"Döntetlen",Toast.LENGTH_SHORT).show();
+                } else if (gepValasztasa==2){
+                    Toast.makeText(getApplicationContext(),"Vesztettél!",Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(getApplicationContext(),"Nyertél!",Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -68,13 +83,20 @@ public class MainActivity extends AppCompatActivity {
                 valasztas = 2;
                 ComputerGenerate();
                 playersImage.setImageResource(R.drawable.scissors);
+                if (valasztas==gepValasztasa) {
+                    Toast.makeText(getApplicationContext(),"Döntetlen",Toast.LENGTH_SHORT).show();
+                } else if (gepValasztasa==0){
+                    Toast.makeText(getApplicationContext(),"Vesztettél!",Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(getApplicationContext(),"Nyertél!",Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
 
     private void ComputerGenerate() {
         rnd = new Random(3);
-        int gepValasztasa = rnd.nextInt();
+        gepValasztasa = rnd.nextInt();
         if (gepValasztasa == 0) {
             computersImage.setImageResource(R.drawable.rock);
         } else if (gepValasztasa==1) {
@@ -84,6 +106,5 @@ public class MainActivity extends AppCompatActivity {
         } else {
             Toast.makeText(getApplicationContext(),"Hiba!",Toast.LENGTH_SHORT).show();
         }
-
-        }
     }
+}
