@@ -17,6 +17,7 @@ public class MainActivity extends AppCompatActivity {
     private Button koGomb;
     private Button olloGomb;
     private Button papirGomb;
+    private int valasztas;
 
 
     @Override
@@ -35,27 +36,28 @@ public class MainActivity extends AppCompatActivity {
         koGomb.findViewById(R.id.koGomb);
         papirGomb.findViewById(R.id.papirGomb);
         olloGomb.findViewById(R.id.olloGomb);
+        valasztas=0;
     }
 
     private void addListeners(){
         koGomb.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                valasztas=1;
             }
         });
 
         papirGomb.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                valasztas=2;
             }
         });
 
         olloGomb.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                valasztas=3;
             }
         });
     }
